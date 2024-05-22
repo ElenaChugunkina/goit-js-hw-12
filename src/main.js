@@ -84,11 +84,18 @@ async function onSearchFormSubmit (event) {
                 lightbox.refresh();
             } 
 
-            if (data.hits.length > 1) {
-                searchLoadMore.classList.remove('is-hidden'); // Показати кнопку, якщо є зображення
-            } else {
-                searchLoadMore.classList.add('is-hidden'); // Приховати кнопку, якщо немає зображень
-            }
+            if (currentPage >= totalPages) {
+                 searchLoadMore.classList.add('is-hidden'); 
+                 iziToast.show({
+                    message: "We're sorry, but you've reached the end of search results.",
+                    messageColor: 'black',
+                    close: true,
+                    backgroundColor: 'orange',
+                    timeout: 3000,
+                });
+             } else {
+                 searchLoadMore.classList.remove('is-hidden'); 
+             }
 
            
 
